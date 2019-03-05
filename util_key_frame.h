@@ -1,0 +1,26 @@
+#ifndef UTIL_KEY_FRAME_H
+#define UTIL_KEY_FRAME_H
+#include <iostream>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <stdio.h>
+#include <QDebug>
+using namespace  std;
+class util_key_frame
+{
+public:
+    util_key_frame();
+    int portInit(const char *device);
+    bool open_serial_port();
+    bool close_serial_port();
+    bool send_angle_alone(unsigned char  id,int angle[22]);
+//    bool send_angle_mirror(unsigned char id_l,unsigned char id_r,int angle[22]);
+    bool send_angle_union(int angle[22],int Speed[10]);
+    bool send_ID_alone(unsigned char  id);
+private:
+    int fd;
+    unsigned char SendAngle[113];
+};
+
+#endif // UTIL_KEY_FRAME_H
